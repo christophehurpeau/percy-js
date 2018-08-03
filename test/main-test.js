@@ -125,11 +125,9 @@ describe('PercyClient', function() {
       };
 
       nock('https://percy.io')
-        .post('/api/v1/projects/foo/bar/builds/')
+        .post('/api/v1/builds')
         .reply(201, responseMock);
-      let request = percyClient.createBuild('foo/bar', {
-        resources: resources,
-      });
+      let request = percyClient.createBuild({resources: resources});
 
       request
         .then(response => {
